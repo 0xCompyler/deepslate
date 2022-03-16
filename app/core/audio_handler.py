@@ -9,6 +9,7 @@ class AudioHandler:
     youtube_url: str = None
     video_id: str = None
     audio_path: str = None
+    audio_file: str = None  # because passing audio file to ytdl resulst in file.mp3.mp3
 
     def __init__(self, ayoutube_url: str) -> None:
         self.youtube_url = ayoutube_url
@@ -17,6 +18,7 @@ class AudioHandler:
         CUR_DIR = os.getcwd()
         DUMP_DIR = os.path.join(CUR_DIR, "dump")
         self.audio_path = os.path.join(DUMP_DIR, f"{self.video_id}")
+        self.audio_file = os.path.join(DUMP_DIR, f"{self.video_id}.mp3")
 
     def download(self):
         ydl_opts = {
@@ -38,7 +40,7 @@ class AudioHandler:
 
     def delete(self):
         try:
-            os.remove(self.audio_path)
+            os.remove(self.audio_file)
 
         except Exception as e:
             log.error(f"Error deleteing {e}")
