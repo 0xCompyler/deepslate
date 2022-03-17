@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
 
 from app.core import stt, audio_handler
-from app.models.stt import TranscribeYoutube
+from app.schema.stt import TranscribeYoutube
 
 router = APIRouter()
 
